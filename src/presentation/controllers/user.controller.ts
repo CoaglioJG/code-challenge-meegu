@@ -1,15 +1,19 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
   Put,
   Query,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { DeleteGuard } from 'src/auth/token/guard';
 import { User } from 'src/domain/modules/entities/user';
+import { DeleteUser } from 'src/domain/modules/usecases/deleteUser';
 import { GetUser } from 'src/domain/modules/usecases/getUser';
 import { GetUserByName } from 'src/domain/modules/usecases/getUserByName';
 import { ListUser } from 'src/domain/modules/usecases/listUser';
@@ -25,6 +29,7 @@ export class UserController {
     private readonly saveUser: SaveUser,
     private readonly updateUser: UpdateUser,
     private readonly getUserByName: GetUserByName,
+    private readonly deleteUser: DeleteUser,
   ) {}
 
   @Get()
@@ -51,5 +56,11 @@ export class UserController {
   @Put(':id')
   update(@Param('id') id: number, @Body() user: Partial<User>): Promise<any> {
     return this.updateUser.call(id, user);
+  }
+
+  @Delete(':id')
+  @UseGuards(DeleteGuard)
+  delete(@Param('id') id: number): Promise<any> {
+    return this.deleteUser.call(id);
   }
 }

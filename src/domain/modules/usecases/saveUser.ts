@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { UserRepository } from 'src/domain/repositories/user.repository';
 import { ViaCepRepository } from 'src/domain/repositories/via-cep.repository';
-import { Idade } from 'src/shared/utils/idade';
+import { Age } from 'src/shared/utils/age';
 import { User } from '../entities/user';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class SaveUser {
 
   async call(user: User): Promise<any> {
     try {
-      const older = Idade(user.birthdate);
+      const older = Age(user.birthdate);
 
       if (older < 18)
         throw new BadRequestException('You must be over 18 to register');

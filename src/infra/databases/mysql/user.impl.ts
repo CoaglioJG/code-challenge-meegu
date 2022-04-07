@@ -60,4 +60,12 @@ export class UserImpl implements UserRepository {
       throw new BadRequestException(error.message);
     }
   }
+
+  async delete(id: number) {
+    try {
+      return await this.userRepository.softDelete(id);
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
+  }
 }
