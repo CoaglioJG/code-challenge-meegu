@@ -23,3 +23,5 @@ yarn test
 Projeto realizado em clean architecture
 Banco MySql
 Typeorm
+
+file:///C:/Users/joaocoaglio/Downloads/meegu.json
