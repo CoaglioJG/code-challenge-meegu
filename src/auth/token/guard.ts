@@ -7,7 +7,10 @@ export class DeleteGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const token = context.switchToHttp().getRequest().rawHeaders;
-    if (token.find((element) => element == 'meegue') == 'meegue') {
+    if (
+      token.find((element) => element == 'meegu') == 'meegu' &&
+      token.find((element) => element == 'acess_token') == 'acess_token'
+    ) {
       return true;
     } else {
       return false;
