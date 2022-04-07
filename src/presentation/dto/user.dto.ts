@@ -6,9 +6,8 @@ export abstract class UserDto {
   name: string;
 
   @IsString()
-  birthdate: Date;
+  birthdate: string;
 
-  @IsOptional()
   @IsOptional()
   document: string;
 

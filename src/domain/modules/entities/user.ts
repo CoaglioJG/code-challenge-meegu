@@ -1,7 +1,7 @@
 export class User {
   id?: number;
   name: string;
-  birthdate: Date;
+  birthdate: string;
   document?: string;
   acceptedTerms: boolean;
   zipcode: string;
